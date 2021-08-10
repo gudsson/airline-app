@@ -26,31 +26,19 @@ const App = () => {
           Welcome to the app!
         </p>
       </section>
+      <p>
+        Show routes on
+        <select name="airline" id="airline-dropdown">
+          <option value="all" selected>All Airlines</option>
+          {data.airlines.map(airline =>
+            <option key={airline.id} value={airline.id}>{airline.name}</option>
+          )}
+        </select>
+        flying in or out of      
+      </p>
+
       <Table className="routes-table" columns={columns} rows={data.routes} format={formatValue} />
-      {/* <table>
-        <thead>
-          <tr>
-            <th>Airline</th>
-            <th>Source Aiport</th>
-            <th>Destination Airport</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr></tr>
-          {data.routes.map((route, idx) => {
-            const srcAirport = getAirportByCode(route.src);
-            const desAirport = getAirportByCode(route.dest);
-            if (!srcAirport || !desAirport) return null
-            return (
-              <tr key={idx}>
-                <td>{getAirlineById(route.airline)}</td>
-                <td>{srcAirport}</td>
-                <td>{desAirport}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table> */}
+
     </div>
   )
 }
