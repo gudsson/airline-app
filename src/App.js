@@ -17,8 +17,9 @@ const App = () => {
     return getAirportByCode(value)
   }
 
-  // for testing
+  // for initial testing
   const filteredAirlines = data.airlines
+  const filteredAirports = data.airports
   
   return (
     <div className="app">
@@ -40,7 +41,15 @@ const App = () => {
           value=""
           onSelect=""
         />
-        flying in or out of      
+        flying in or out of
+        <Select
+          options={filteredAirports}
+          valueKey="code"
+          titleKey="name"
+          allTitle="All Airports"
+          value=""
+          onSelect=""
+        />
       </p>
 
       <Table className="routes-table" columns={columns} rows={data.routes} format={formatValue} />
