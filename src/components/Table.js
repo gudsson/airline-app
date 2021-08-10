@@ -22,14 +22,14 @@ const Table = ({ className, columns, rows, format }) => {
         <thead>
           <tr>
             {columns.map(column => 
-              <th>{column.name}</th>
+              <th key={column.name}>{column.name}</th>
             )}
           </tr>
         </thead>
         <tbody>
           {displayRows.map((row, idx) => 
-            <tr key={idx}>{columns.map(column => 
-              <td>{format(column.property, row[column.property])}</td>
+            <tr key={idx}>{columns.map((column, jdx) => 
+              <td key={jdx}>{format(column.property, row[column.property])}</td>
             )}</tr>
           )}
         </tbody>

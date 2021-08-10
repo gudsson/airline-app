@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import data from './data'
 import { getAirlineById, getAirportByCode } from './data'
@@ -6,6 +6,8 @@ import Table from './components/Table'
 import Select from './components/Select'
 
 const App = () => {
+  const [airline, setAirline] = useState("all")
+  const [airport, setAirport] = useState("all")
   const columns = [
     {name: 'Airline', property: 'airline'},
     {name: 'Source Airport', property: 'src'},
@@ -20,6 +22,19 @@ const App = () => {
   // for initial testing
   const filteredAirlines = data.airlines
   const filteredAirports = data.airports
+
+  const showAll = (event) => {
+    setAirline('all')
+    setAirport('all')
+  }
+
+  const selectedAirline = (selection) => {
+    setAirline(selection)
+  }
+
+  const selectedAirport = (selection) => {
+    setAirport(selection)
+  }
   
   return (
     <div className="app">
@@ -38,8 +53,8 @@ const App = () => {
           valueKey="id"
           titleKey="name"
           allTitle="All Airlines"
-          value=""
-          onSelect=""
+          value={airline}
+          onSelect={selectedAirline}
         />
         flying in or out of
         <Select
@@ -47,11 +62,11 @@ const App = () => {
           valueKey="code"
           titleKey="name"
           allTitle="All Airports"
-          value=""
-          onSelect=""
+          value={airport}
+          onSelect={selectedAirport}
         />
+      <button onClick={showAll} disabled={false}>Show All Routes</button>
       </p>
-
       <Table className="routes-table" columns={columns} rows={data.routes} format={formatValue} />
 
     </div>
