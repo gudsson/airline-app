@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data.js'
+// const data = require('./data')
+import data from './data'
+import { getAirlineById, getAirportByCode } from './data'
 
 const App = () => (
   <div className="app">
@@ -15,19 +17,26 @@ const App = () => (
   <table>
     <thead>
       <tr>
-        <th>airline</th>
-        <th>src</th>
-        <th>dest</th>
+        <th>Airline</th>
+        <th>Source Aiport</th>
+        <th>Destination Airport</th>
       </tr>
     </thead>
     <tbody>
-      {data.routes.map((route, idx) => 
-        <tr key={idx}>
-          <td>{route.airline}</td>
-          <td>{route.src}</td>
-          <td>{route.dest}</td>
-        </tr>
-      )}
+      <tr></tr>
+      {data.routes.map((route, idx) => {
+        const srcAirport = getAirportByCode(route.src);
+        const desAirport = getAirportByCode(route.dest);
+        if (!srcAirport || !desAirport) return null
+        return (
+          <tr key={idx}>
+            <td>{getAirlineById(route.airline)}</td>
+            <td>{srcAirport}</td>
+            <td>{desAirport}</td>
+          </tr>
+        )
+      })}
+      {console.log(data)}
     </tbody>
   </table>
 </div>
