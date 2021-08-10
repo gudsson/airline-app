@@ -1347,7 +1347,7 @@ export const getAirlineById = (id) => {
 export const getAirportByCode = (code) => {
   const airport =  airports.find(airport => airport.code === code)
   if (!airport) console.log(code)
-  return (airport) ? airport.name : null
+  return (airport) ? airport.name : code
 }
 
 export default {routes, airlines, airports};
