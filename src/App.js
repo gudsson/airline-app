@@ -3,6 +3,7 @@ import './App.css';
 import data from './data'
 import { getAirlineById, getAirportByCode } from './data'
 import Table from './components/Table'
+import Select from './components/Select'
 
 const App = () => {
   const columns = [
@@ -15,6 +16,9 @@ const App = () => {
     if (property === 'airline') return getAirlineById(value)
     return getAirportByCode(value)
   }
+
+  // for testing
+  const filteredAirlines = data.airlines
   
   return (
     <div className="app">
@@ -28,12 +32,14 @@ const App = () => {
       </section>
       <p>
         Show routes on
-        <select name="airline" id="airline-dropdown">
-          <option value="all" selected>All Airlines</option>
-          {data.airlines.map(airline =>
-            <option key={airline.id} value={airline.id}>{airline.name}</option>
-          )}
-        </select>
+        <Select
+          options={filteredAirlines}
+          valueKey="id"
+          titleKey="name"
+          allTitle="All Airlines"
+          value=""
+          onSelect=""
+        />
         flying in or out of      
       </p>
 
