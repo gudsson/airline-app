@@ -19,9 +19,33 @@ const App = () => {
     return getAirportByCode(value)
   }
 
-  // for initial testing
-  const filteredAirlines = data.airlines
-  const filteredAirports = data.airports
+  const filteredRoutes = data.routes.filter(route => {
+    return (
+        [String(route.airline), 'all'].includes(airline)
+        &&
+        (route.src === airport
+          || route.dest === airport
+          || airport === "all")
+    )
+  })
+
+  console.log(filteredRoutes)
+
+  const filteredAirlines = data.airlines.map(airline => {
+    const valid = filteredRoutes.some(route => {
+      return route.airline === airline.id
+    })
+
+    return { ...airline, valid }
+  })
+
+  const filteredAirports = data.airports.map(airport => {
+    const valid = filteredRoutes.some(route => {
+      return [route.src, route.dest].includes(airport.code)
+    })
+
+    return { ...airport, valid }
+  })
 
   const showAll = (event) => {
     setAirline('all')
