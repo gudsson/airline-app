@@ -1,13 +1,3 @@
-// const routes = [
-//   {"airline":3090,"src":"ARN","dest":"AMS"},
-//   {"airline":3090,"src":"ATL","dest":"PBI"},
-//   {"airline":3090,"src":"YEG","dest":"YMM"},
-//   {"airline":24,"src":"DFW","dest":"XNA"},
-//   {"airline":24,"src":"DFW","dest":"FWA"},
-//   {"airline":24,"src":"TYS","dest":"LGA"},
-//   {"airline":24,"src":"BUF","dest":"CLT"},
-// ]
-
 const routes = [
   {"airline":24,"src":"DFW","dest":"XNA"},
   {"airline":24,"src":"DFW","dest":"FWA"},
@@ -1348,6 +1338,15 @@ const airports = [
   {"code":"DOH","name":"Doha International Airport","lat":25.261111,"long":51.565},
   {"code":"WAE","name":"Wadi al-Dawasir Domestic Airport","lat":20.504167,"long":45.199444},
   {"code":"BGG","name":"Bingöl Airport","lat":38.861111,"long":40.5925},
+  {"code":"FWA","name":"Fort Wayne International Airport","lat":40.9767,"long":-85.1976},
+  {"code":"BUF","name":"Buffalo Niagara International Airport","lat":42.9391,"long":-78.7294},
+  {"code":"CLT","name":"Charlotte Douglas International Airport","lat":35.2142,"long":-80.9472},
+  {"code":"GSP","name":"Greenville-Spartanburg International Airport","lat":34.8959,"long":-82.2172},
+  {"code":"BWI","name":"Baltimore/Washington International Thurgood Marshall Airport","lat":39.1784,"long":-76.6737},
+  {"code":"ORD","name":"O'Hare International Airport","lat":41.9801,"long":-87.9091},
+  {"code":"MSP","name":"Minneapolis−Saint Paul International Airport","lat":44.8820,"long":-93.2206},
+  {"code":"BDL","name":"Bradley International Airport","lat":41.9377,"long":-72.6881},
+  {"code":"NGO","name":"Chubu Centrair International Airport","lat":34.8581,"long":136.8117},
 ];
 
 export const getAirlineById = (id) => {
@@ -1356,7 +1355,7 @@ export const getAirlineById = (id) => {
 
 export const getAirportByCode = (code) => {
   const airport =  airports.find(airport => airport.code === code)
-  // if (!airport) console.log(code)
+  if (!airport) console.log(code)
   return (airport) ? airport.name : code
 }
 

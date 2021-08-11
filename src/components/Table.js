@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 
 const Table = ({ className, columns, rows, format }) => {
   const [startingRow, setStartingRow] = useState(0)
-  // const [finishingRow, setfinishingRow] = useState(PAGE_SIZE)
   const perPage = 25
   const totalRows = rows.length
   const displayRows = rows.slice(startingRow, startingRow + perPage)
